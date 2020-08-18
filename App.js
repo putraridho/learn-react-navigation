@@ -2,48 +2,45 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import SettingScreen from "./SettingScreen";
-import ProfileScreen from "./ProfileScreen";
 import HomeScreen from "./HomeScreen";
 import DetailScreen from "./DetailScreen";
+import ModalScreen from "./ModalScreen";
 
-const Tab = createStackNavigator();
-const SettingsStack = createStackNavigator();
-const HomeStack = createStackNavigator();
+const MainStack = createStackNavigator();
+const RootStack = createStackNavigator();
+
+function MainStackScreen() {
+  return (
+    <MainStack.Navigator>
+      <MainStack.Screen name="Home" component={HomeScreen} />
+      <MainStack.Screen name="Details" component={DetailScreen} />
+    </MainStack.Navigator>
+  );
+}
+
+function RootStackScreen() {
+  return (
+    <RootStack.Navigator mode="modal">
+      <RootStack.Screen
+        name="Main"
+        component={MainStackScreen}
+        options={{ headerShown: false }}
+      />
+      <RootStack.Screen
+        name="MyModal"
+        component={ModalScreen}
+        options={{ headerShown: false }}
+      />
+    </RootStack.Navigator>
+  );
+}
 
 export default function App() {
   return (
     <>
       <StatusBar />
       <NavigationContainer>
-        <Tab.Navigator
-          screenOptions={{
-            headerShown: false,
-          }}
-        >
-          <Tab.Screen name="First">
-            {() => (
-              <SettingsStack.Navigator initialRouteName="Settings">
-                <SettingsStack.Screen
-                  name="Settings"
-                  component={SettingScreen}
-                />
-                <SettingsStack.Screen
-                  name="Profile"
-                  component={ProfileScreen}
-                />
-              </SettingsStack.Navigator>
-            )}
-          </Tab.Screen>
-          <Tab.Screen name="Second">
-            {() => (
-              <HomeStack.Navigator>
-                <HomeStack.Screen name="Home" component={HomeScreen} />
-                <HomeStack.Screen name="Details" component={DetailScreen} />
-              </HomeStack.Navigator>
-            )}
-          </Tab.Screen>
-        </Tab.Navigator>
+        <RootStackScreen />
       </NavigationContainer>
     </>
   );
