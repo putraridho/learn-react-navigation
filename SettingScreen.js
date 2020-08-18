@@ -10,11 +10,8 @@ export default function SettingScreen({ navigation }) {
         justifyContent: "center",
       }}
     >
-      <Text>Settings</Text>
-      <Button
-        title="Go to Profile"
-        onPress={() => navigation.navigate("Profile")}
-      />
+      <Text>Settings!</Text>
+      <Button title="Go to Details" onPress={() => navigation.navigate("Details")} />
     </View>
   );
 }

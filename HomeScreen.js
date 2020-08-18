@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Button, View } from "react-native";
+import { Text, View, Button } from "react-native";
 
 export default function HomeScreen({ navigation }) {
   return (
@@ -10,16 +10,10 @@ export default function HomeScreen({ navigation }) {
         justifyContent: "center",
       }}
     >
-      <Text
-        style={{
-          fontSize: 30,
-        }}
-      >
-        This is the home screen!
-      </Text>
+      <Text>Home!</Text>
       <Button
-        title="Open Modal"
-        onPress={() => navigation.navigate("MyModal")}
+        title="Go to Details"
+        onPress={() => navigation.navigate("Details")}
       />
     </View>
   );
