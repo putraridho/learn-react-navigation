@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Button } from "react-native";
 
-export default function HomeScreen({ navigation }) {
+export default function NotificationsScreen({ navigation }) {
   return (
     <View
       style={{
@@ -10,10 +10,7 @@ export default function HomeScreen({ navigation }) {
         justifyContent: "center",
       }}
     >
-      <Button
-        title="Go to Notifications"
-        onPress={() => navigation.navigate("Notifications")}
-      />
+      <Button title="Go back home" onPress={() => navigation.goBack()} />
     </View>
   );
 }
